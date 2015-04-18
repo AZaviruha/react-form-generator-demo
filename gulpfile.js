@@ -1,10 +1,11 @@
-var gulp       = require( 'gulp' )
-  , react      = require( 'gulp-react' )
-  , concat     = require( 'gulp-concat' )
-  , browserify = require( 'gulp-browserify' )
-  , shell      = require( 'gulp-shell' )
-  , path       = require( 'path' )
-  , args      = require( 'yargs' ).argv;
+var gulp       = require( 'gulp' );
+var react      = require( 'gulp-react' );
+var concat     = require( 'gulp-concat' );
+var browserify = require( 'gulp-browserify' );
+var shell      = require( 'gulp-shell' );
+var path       = require( 'path' );
+var args       = require( 'yargs' ).argv;
+var babel      = require('gulp-babel');
 
 var PORT = args.p || args.port || 8001;
 
@@ -35,6 +36,7 @@ gulp.task( 'build-demo', [ 'compile-components' ], function () {
     return gulp.src( 'src/js/main.js' )
                .pipe( react() )
                .pipe( browserify() )
+               // .pipe( babel() )
                .pipe( concat( 'main.js' ) )
                .pipe( gulp.dest( 'dist/client/js/' ) );
 });

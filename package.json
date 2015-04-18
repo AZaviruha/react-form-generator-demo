@@ -24,18 +24,24 @@
   },
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^3.3.4",
     "classnames": "^1.2.0",
     "es5-shim": "^4.0.3",
     "express": "^4.12.3",
+    "faker": "^2.1.2",
     "fixed-data-table": "^0.1.2",
     "immutable": "^3.7.2",
     "marty": "^0.9.11",
-    "react": "^0.13.0"
+    "object-assign": "^2.0.0",
+    "react": "^0.13.0",
+    "react-bootstrap": "^0.20.3",
+    "react-pager": "^1.1.1"
   },
   "devDependencies": {
     "express": "^4.12.3",
     "front-log": "0.0.5",
     "gulp": "^3.8.10",
+    "gulp-babel": "^5.1.0",
     "gulp-browserify": "^0.5.0",
     "gulp-concat": "^2.4.1",
     "gulp-react": "^2.0.0",

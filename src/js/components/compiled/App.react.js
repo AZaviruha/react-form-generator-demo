@@ -1,16 +1,24 @@
 'use strict';
 
+window.log    = require( 'front-log' );
 
-var React = require( 'react' );
-var Marty = require( 'marty' );
+var React     = require( 'react' );
+var Marty     = require( 'marty' );
+var TableForm = require( './TableForm.react' );
 
-var App = React.createClass({displayName: "App",
+var RB        = require( 'react-bootstrap' );
+var Grid      = RB.Grid;
+var Row       = RB.Row;
+var Col       = RB.Col;
+
+module.exports = React.createClass({
+    displayName: 'Application',
+
     render: function() {
         return (
-            React.createElement("div", null, "Hello, world")
+            React.createElement(Grid, null, 
+                React.createElement(TableForm, null)
+            )
         );
     }
 });
-
-
-module.exports = App;
