@@ -1,0 +1,113 @@
+{
+    "fields": {
+        "id": {
+            "renderer": "text",
+            "isDisabled": true
+        },
+        "author": {
+            "renderer": "text",
+            "validators": [{
+                "rule": "required",
+                "message": "Field is required"
+            }]
+        },
+        "title": {
+            "renderer": "textarea",
+            "validators": [{
+                "rule": "required",
+                "message": "Field is required"
+            }, {
+                "rule": "maxLength",
+                "value": 200,
+                "message": "Maximum length of field is 200 characters"
+            }]
+        }, 
+        "btnSave": {
+            "renderer": "button",
+            "rendererSpecific": {
+                "text": "Save"
+            }
+        },
+        "btnClear": {
+            "renderer": "button",
+            "rendererSpecific": {
+                "text": "Clear"
+            }
+        }
+    },
+    "layout": {
+        "grid": {
+            "css": "container demo-form",
+            "rows": [{
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-12",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "id",
+                            "label": "ID:",
+                            "css": {
+                                "wrapper": "row",
+                                "label": "col-xs-12 col-sm-2 col-md-2",
+                                "field": "col-xs-12 col-sm-9 col-md-9"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-12",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "author",
+                            "label": "Author:",
+                            "css": {
+                                "wrapper": "row",
+                                "label": "col-xs-12 col-sm-2 col-md-2",
+                                "field": "col-xs-12 col-sm-9 col-md-9"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-12",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "title",
+                            "label": "Title:",
+                            "css": {
+                                "wrapper": "row",
+                                "label": "col-xs-12 col-sm-2 col-md-2",
+                                "field": "col-xs-12 col-sm-9 col-md-9"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-12",
+                    "content": [{
+                        "renderer": "unwrapped",
+                        "rendererSpecific": {
+                            "fieldID": "btnSave",
+                            "css": "btn btn-primary btn-save col-xs-6 col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2"
+                        }
+                    }, {
+                        "renderer": "unwrapped",
+                        "rendererSpecific": {
+                            "fieldID": "btnClear",
+                            "css": "btn btn-default btn-clear col-xs-6 col-sm-2 col-sm-offset-1 col-md-2 col-md-offset-1"
+                        }
+                    }]
+                }]
+            }]
+        }
+    }
+}

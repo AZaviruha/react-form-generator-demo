@@ -9,5 +9,9 @@ module.exports = Marty.createActionCreators({
 
     changePage: function ( pageNum ) {
         this.dispatch( Constants.CHANGE_TABLE_PAGE, pageNum );
+    },
+
+    editTableRow: function ( row ) {
+        this.dispatch( Constants.EDIT_TABLE_ROW, row );
     }
 });

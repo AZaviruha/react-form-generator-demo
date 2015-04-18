@@ -11,7 +11,8 @@ module.exports = Marty.createStore({
     id: 'TableFormStore',
     
     handlers: {
-        changePage: TableConstants.CHANGE_TABLE_PAGE
+        changePage : TableConstants.CHANGE_TABLE_PAGE,
+        editRow    : TableConstants.EDIT_TABLE_ROW
     },
     
     
@@ -22,7 +23,9 @@ module.exports = Marty.createStore({
                 total   : Math.ceil( this.__rows.count() / PAGE_SIZE ),
                 current : 0,
                 size    : PAGE_SIZE
-            })
+            }),
+            
+            isVisible: true
         }); 
     },
 
@@ -31,36 +34,31 @@ module.exports = Marty.createStore({
     /* ====================== ACTIONS ====================== */
     /* ====================================================== */
     changePage: function ( pageNum ) {
-        var paging = this.state.get( 'paging' );
-        this.state = this.state.set( 
-            'paging', paging.set( 'current', pageNum ) );
+        var oldPaging = this.state.get( 'paging' );
+        var newPaging = oldPaging.set( 'current', pageNum );
 
-        // this.state.paging.current = pageNum;
-        
+        this.state = this.state.set( 'paging', newPaging );
         this.hasChanged();
     },
     
+
+    editRow: function ( row ) {
+        this.state = this.state.set( 'isVisible', false );
+        this.hasChanged();
+    },
 
     /* ====================================================== */
     /* ====================== GETTERS ======================= */
     /* ====================================================== */
 
     getRows: function () {
-        log.debug( 'TableFormStore.getRows' );
-
         var paging = this.getPaging();
         var start  = paging.get( 'current' ) * paging.get( 'size' );
-        log.debug( 'TableFormStore.getRows :: start ', start );
         var end    = start + paging.get( 'size' );
-        log.debug( 'TableFormStore.getRows :: size ', paging.get( 'size' ) );
-        log.debug( 'TableFormStore.getRows :: end ', end );
         return this.__rows.slice( start, end );
     },
     
     getPaging: function () {
-        log.debug( 'TableFormStore.getPaging :: ', 
-                   this.state.get( 'paging' ) );
-
         return this.state.get( 'paging' );
     },
 

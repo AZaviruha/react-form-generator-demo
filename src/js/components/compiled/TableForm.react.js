@@ -33,6 +33,7 @@ var TableForm = React.createClass({
 
     editRequest: function ( row ) {
         log.debug( 'TableForm.editRequest :: ', row.toJS() );
+        Actions.editTableRow( row );
     },
     
 
@@ -75,11 +76,10 @@ var TableForm = React.createClass({
         var props  = this.props;
         var paging = props.paging;
 
+        if ( !props.isVisible ) return null;
+
         return (
             React.createElement(Row, null, 
-                React.createElement(Col, {sm: 12, xs: 12, md: 12}, 
-                    React.createElement("h3", null, "react-form-generator demo")
-                ), 
                 React.createElement(Col, {sm: 12, xs: 12, md: 12}, 
                     React.createElement(Button, {
                         sm: 12, xs: 4, md: 2, 
@@ -142,6 +142,11 @@ module.exports = Marty.createContainer( TableForm, {
         
         paging: function () {
             return TableFormStore.for( this ).getPaging().toObject();
+        },
+
+        isVisible: function () {
+            return TableFormStore.for( this ).getState()
+                .get( 'isVisible' );
         }
     }
 });
