@@ -1,0 +1,45 @@
+{
+  "name": "react-form-generator-demo",
+  "version": "0.0.1",
+  "description": "Example of CRUD application with react-form-generator",
+  "scripts": {
+    "test": "./node_modules/.bin/gulp test",
+    "build": "./node_modules/.bin/gulp build-min-global"
+  },
+  "bugs": "https://github.com/AZaviruha/react-form-generator-demo/issues",
+  "keywords": [
+    "react",
+    "react-component",
+    "form",
+    "react-form-generator",
+    "form-generator",
+    "gui-generator",
+    "CRUD",
+    "demo"
+  ],
+  "author": "Alexei Zaviruha <a.zaviruha@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:AZaviruha/react-form-generator-demo.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "classnames": "^1.2.0",
+    "es5-shim": "^4.0.3",
+    "express": "^4.12.3",
+    "fixed-data-table": "^0.1.2",
+    "immutable": "^3.7.2",
+    "marty": "^0.9.11",
+    "react": "^0.13.0"
+  },
+  "devDependencies": {
+    "express": "^4.12.3",
+    "front-log": "0.0.5",
+    "gulp": "^3.8.10",
+    "gulp-browserify": "^0.5.0",
+    "gulp-concat": "^2.4.1",
+    "gulp-react": "^2.0.0",
+    "gulp-shell": "^0.4.0",
+    "yargs": "^3.4.5"
+  }
+}
