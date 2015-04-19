@@ -1,3 +1,37 @@
+/* LABELS */
+label {
+    color: #555;
+}
+
+/* HEADERS */
+h1, h2, h3, h4, h5 { color: #555; }
+
+/* INPUTS */
+input, textarea {
+    position: relative;
+    padding: 4px 10px;
+    background: #fff;
+    border: 1px solid #d8d8d8;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    outline: 0 none;
+    color: #555;
+}
+.generated-text-field { margin-bottom: 10px; }
+.generated-text-field:read-only {
+    color: #777;
+    background-color: #f0f0f0;
+}
+.generated-textarea-field {
+    min-height: 90px;
+    min-width: 370px;
+    margin-bottom: 10px;
+}
+
+
 /* TABLES */
 .public_fixedDataTable_main {
     margin-top: 15px;
@@ -177,4 +211,10 @@
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
     cursor: pointer;
+}
+
+
+/* OTHER */
+.demo-form {
+    margin-top: 5px;
 }
