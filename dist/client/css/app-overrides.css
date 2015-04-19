@@ -218,3 +218,16 @@ input, textarea {
 .demo-form {
     margin-top: 5px;
 }
+
+textarea {
+    resize: none;
+}
+
+.generated-text-field {
+    width: 100%;
+}
+
+.generated-textarea-field {
+    width: 100%;
+    max-width: 100%;
+}
