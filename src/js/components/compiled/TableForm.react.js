@@ -60,7 +60,7 @@ var TableForm = React.createClass({
     /* ====================================================== */
     
     renderLink: function ( txt, cell, row ) {
-        log.debug( 'TableForm.renderLink  :: ', arguments );
+        // log.debug( 'TableForm.renderLink  :: ', arguments );
         var self = this;
         return (React.createElement(Button, {
                     onClick: handler, 
@@ -72,7 +72,7 @@ var TableForm = React.createClass({
     
 
     render: function () {
-        log.debug( 'TableForm.render :: ', this.props );
+        // log.debug( 'TableForm.render :: ', this.props );
         var props  = this.props;
         var paging = props.paging;
 
@@ -145,8 +145,8 @@ module.exports = Marty.createContainer( TableForm, {
         },
 
         isVisible: function () {
-            return TableFormStore.for( this ).getState()
-                .get( 'isVisible' );
+            var state = TableFormStore.for( this ).getState();
+            return state.get( 'isVisible' );
         }
     }
 });

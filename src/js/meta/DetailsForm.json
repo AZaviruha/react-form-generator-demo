@@ -28,10 +28,10 @@
                 "text": "Save"
             }
         },
-        "btnClear": {
+        "btnCancel": {
             "renderer": "button",
             "rendererSpecific": {
-                "text": "Clear"
+                "text": "Cancel"
             }
         }
     },
@@ -102,7 +102,7 @@
                     }, {
                         "renderer": "unwrapped",
                         "rendererSpecific": {
-                            "fieldID": "btnClear",
+                            "fieldID": "btnCancel",
                             "css": "btn btn-default btn-clear col-xs-6 col-sm-2 col-sm-offset-1 col-md-2 col-md-offset-1"
                         }
                     }]

@@ -36,7 +36,8 @@
     "react": "^0.13.0",
     "react-bootstrap": "^0.20.3",
     "react-form-generator": "^0.2.0",
-    "react-pager": "^1.1.1"
+    "react-pager": "^1.1.1",
+    "vow": "^0.4.9"
   },
   "devDependencies": {
     "express": "^4.12.3",

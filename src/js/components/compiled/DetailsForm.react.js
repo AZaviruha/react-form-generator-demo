@@ -11,7 +11,7 @@ var Button           = RB.Button;
 
 var GeneratedForm    = require( 'react-form-generator' )();
 var DetailsFormStore = require( '../../stores/DetailsFormStore' );
-// var Actions         = require( '../../actions/DetaisFormActions' );
+var Actions          = require( '../../actions/DetailsFormActions' );
 
 
 
@@ -21,10 +21,15 @@ var DetailsForm = React.createClass({
     /* ====================================================== */
     /* ====================== ACTIONS ====================== */
     /* ====================================================== */
-    updateFormValue: function ( newValue, change ) {
-        log.debug( 'DetailsForm.updateFormValue' );
+
+    updateFormValue: function ( newVal, change, path ) {
+        Actions.updateDetails( newVal );
     },
     
+
+    handleFormEvent: function ( fldName, eName, eVal ) {
+        Actions.handleFormEvent( fldName + ':' + eName, eVal );
+    },
     
     /* ====================================================== */
     /* ====================== HELPERS ======================= */
@@ -36,7 +41,7 @@ var DetailsForm = React.createClass({
     /* ====================================================== */
     
     render: function () {
-        log.debug( 'DetailsForm.render :: ', this.props );
+        // log.debug( 'DetailsForm.render :: ', this.props );
         var props = this.props;
         
         if ( !props.isVisible ) return null;
@@ -48,7 +53,8 @@ var DetailsForm = React.createClass({
                         meta: props.formMeta, 
                         value: props.formValue, 
                         errors: props.formErrors, 
-                        onChange: this.updateFormValue})
+                        onChange: this.updateFormValue, 
+                        onEvent: this.handleFormEvent})
                 )
             )
         );
@@ -61,29 +67,23 @@ module.exports = Marty.createContainer( DetailsForm, {
 
     fetch: {
         formMeta: function () {
-            return DetailsFormStore.for( this ).getState()
-                .get( 'formMeta' ).toObject();
+            var state = DetailsFormStore.for( this ).getState();
+            return state.get( 'formMeta' ).toObject();
         },
         
         formValue: function () {
-            return DetailsFormStore
-                .for( this )
-                .getState()
-                .get( 'formValue' )
-                .toJS();
+            var state = DetailsFormStore.for( this ).getState();
+            return state.get( 'formValue' ).toJS();
         },
         
         formErrors: function () {
-            return DetailsFormStore
-                .for( this )
-                .getState()
-                .get( 'formErrors' )
-                .toJS();
+            var state = DetailsFormStore.for( this ).getState();
+            return state.get( 'formErrors' ).toJS();
         },
 
         isVisible: function () {
-            return DetailsFormStore.for( this ).getState()
-                .get( 'isVisible' );
+            var state = DetailsFormStore.for( this ).getState();
+            return state.get( 'isVisible' );
         }
     }
 });

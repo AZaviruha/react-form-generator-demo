@@ -1,9 +1,13 @@
 'use strict';
 
-var I              = require( 'immutable' );
-var Marty          = require( 'marty' );
-var faker          = require('faker');
-var TableConstants = require( '../constants/TableFormConstants' );
+var I                = require( 'immutable' );
+var Marty            = require( 'marty' );
+var faker            = require('faker');
+var FormGenerator    = require( 'react-form-generator' );
+var t                = FormGenerator.tools;
+var TableConstants   = require( '../constants/TableFormConstants' );
+var DetailsConstants = require( '../constants/DetailsFormConstants' );
+// var DetailsFormStore = require( './DetailsFormStore' );
 
 var ROWS_NUMBER   = 100;
 
@@ -11,13 +15,20 @@ module.exports = Marty.createStore({
     id: 'TableFormStore',
     
     handlers: {
-        changePage : TableConstants.CHANGE_TABLE_PAGE,
-        editRow    : TableConstants.EDIT_TABLE_ROW
+        changePage      : TableConstants.CHANGE_TABLE_PAGE,
+        editRow         : TableConstants.EDIT_TABLE_ROW,
+        handleFormEvent : DetailsConstants.HANDLE_FORM_EVENT
     },
     
     
     getInitialState: function () { 
         var PAGE_SIZE = 10;
+
+        this.__route = t.buildRouter(
+            'btnCancel:click', [ openForm ],
+            'btnSave:click',   [ openForm ]
+        );
+
         return I.Map({
             paging: I.Map({
                 total   : Math.ceil( this.__rows.count() / PAGE_SIZE ),
@@ -27,6 +38,32 @@ module.exports = Marty.createStore({
             
             isVisible: true
         }); 
+        
+
+        function openForm ( prom ) {
+            log.debug( 'TableStore.openForm' );
+            var self = this;
+
+            prom.then(function ( val ) {
+                log.debug( 'TableStore.openForm :: then :: ', val );
+                if ( val ) {
+                    log.debug( 'new value :: ', val.toJS() );
+                    var idx = self.__rows.findIndex(function ( el ) {
+                        return el.get( 'id' ) === val.get( 'id' );
+                    });
+                    console.log( 'idx: ', idx );
+                    self.__rows = self.__rows.splice( idx, 1, val );
+                }
+                
+                self.state = self.state.set( 'isVisible', true );
+
+                /* Well, it's a kind of workaround
+                   I'm working on this */
+                self.action = null;
+
+                self.hasChanged();
+            });
+        }
     },
 
 
@@ -46,6 +83,14 @@ module.exports = Marty.createStore({
         this.state = this.state.set( 'isVisible', false );
         this.hasChanged();
     },
+    
+
+    handleFormEvent: function ( path, e, __, prom ) {
+        // log.debug( 'TableFormStore.handleFormEvent :: ', prom );
+        // this.waitFor( DetailsFormStore );
+        this.__route.call( this, path, prom );
+    },
+
 
     /* ====================================================== */
     /* ====================== GETTERS ======================= */
@@ -77,7 +122,7 @@ function createRows ( size ) {
             author : faker.name.findName(),
             title  : faker.lorem.sentence()
         });
-    });
+    }).toList();
 }
 
 

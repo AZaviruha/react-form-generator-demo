@@ -73,7 +73,7 @@ textarea{
 input,
 textarea {
     background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #B3B3B3;
+    border: 1px solid; /*#B3B3B3;*/
     color: #333333;
     font-size: 14px;
     font-weight: 300;
@@ -83,13 +83,13 @@ textarea {
 
 input:hover,
 textarea:hover {
-    border-color: #2a7fb8;
+    /* border-color: #2a7fb8; */
     overflow: hidden;
 }
 
 input:focus,
 textarea:focus {
-    border-color: #c80020;
+    /* border-color: #c80020; */
 }
 
 input[readonly],
@@ -99,7 +99,7 @@ textarea[readonly],
 textarea[readonly]:hover,
 textarea[readonly]:focus {
     background-color: #EFEFEF;
-    border-color: #B3B3B3;
+    /* border-color: #B3B3B3; */
 }
 
 textarea {
