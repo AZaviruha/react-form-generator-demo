@@ -1,3 +1,4 @@
 node_modules/
 site/
 spec/compiled/
+dist/client/js/main.js
