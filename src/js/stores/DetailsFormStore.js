@@ -5,6 +5,9 @@ var Marty            = require( 'marty' );
 var faker            = require('faker');
 var FormGenerator    = require( 'react-form-generator' );
 var t                = FormGenerator.tools;
+var GeneratedForm    = FormGenerator({});
+var validateForm     = GeneratedForm.validateForm;
+var isFormValid      = GeneratedForm.isFormValid;
 var DetailsConstants = require( '../constants/DetailsFormConstants' );
 var TableConstants   = require( '../constants/TableFormConstants' );
 var DetailsMeta      = require( '../meta/DetailsForm.json' );
@@ -48,10 +51,26 @@ module.exports = Marty.createStore({
         }
 
         function saveForm ( dfd ) {
-            var formValue = this.state.get( 'formValue' );
-            log.debug( 'DataFormStore.updateRow :: ', formValue );
-            this.state = this.state.set( 'isVisible', false );
-            dfd.resolve( formValue );
+            var formValue  = this.state.get( 'formValue' ).toObject();
+            var formMeta   = this.state.get( 'formMeta' ).toObject();
+            var formErrors = validateForm( formMeta, formValue );
+            var s          = this.state;
+
+            if ( isFormValid( formErrors ) ) {
+                this.state = s.set( 'isVisible', false );
+                dfd.resolve( formValue );
+            }
+            else {
+                this.state = s.set( 'formErrors', I.Map( formErrors ) );
+                dfd.reject( formErrors );
+            }
+            
+            function isFormValid ( formErrors ) {
+                return t.reduce(function ( acc, val, key ) {
+                    return acc && !(val && val.length);
+                }, true, formErrors );
+            }
+
         }
     },
 

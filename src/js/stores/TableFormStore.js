@@ -41,17 +41,13 @@ module.exports = Marty.createStore({
         
 
         function openForm ( prom ) {
-            log.debug( 'TableStore.openForm' );
             var self = this;
 
             prom.then(function ( val ) {
-                log.debug( 'TableStore.openForm :: then :: ', val );
                 if ( val ) {
-                    log.debug( 'new value :: ', val.toJS() );
                     var idx = self.__rows.findIndex(function ( el ) {
                         return el.get( 'id' ) === val.get( 'id' );
                     });
-                    console.log( 'idx: ', idx );
                     self.__rows = self.__rows.splice( idx, 1, val );
                 }
                 
