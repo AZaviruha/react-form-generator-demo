@@ -14,8 +14,8 @@ module.exports = Marty.createActionCreators({
     },
 
     
-    updateDetails: function ( newVal, path ) {
-        this.dispatch( Constants.UPDATE_DETAILS, newVal, path );
+    updateDetails: function ( newVal, errs ) {
+        this.dispatch( Constants.UPDATE_DETAILS, newVal, errs );
     },
 
 

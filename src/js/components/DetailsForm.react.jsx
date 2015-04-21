@@ -22,9 +22,8 @@ var DetailsForm = React.createClass({
     /* ====================== ACTIONS ====================== */
     /* ====================================================== */
 
-    updateFormValue: function ( newVal, change, path ) {
-        log.debug('-----------------', arguments );
-        Actions.updateDetails( newVal, path );
+    updateFormValue: function ( newVal, change, errs ) {
+        Actions.updateDetails( newVal, errs );
     },
     
 

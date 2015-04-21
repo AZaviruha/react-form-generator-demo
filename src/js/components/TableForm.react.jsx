@@ -83,6 +83,7 @@ var TableForm = React.createClass({
                 <Col sm={12} xs={12} md={12}>
                     <Button 
                         sm={12} xs={4} md={2}
+                        className="btn-yellow"
                         onClick={this.addNewRequest}
                         >New</Button>
                 </Col>

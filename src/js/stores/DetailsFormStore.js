@@ -21,21 +21,23 @@ module.exports = Marty.createStore({
     },
     
     
+    /* ====================================================== */
+    /* ====================== GETTERS ======================= */
+    /* ====================================================== */
+
     getInitialState: function () { 
         this.__route = t.buildRouter(
             'btnCancel:click', [ closeForm ],
-            'btnSave:click',   [ saveForm ],
-            /.+:blur/,         [ validateForm ]
+            'btnSave:click',   [ saveForm ]
         );
         
         var formValue = t.evalDefaults( DetailsMeta );
 
         return I.Map({
-            formMeta    : I.Map( DetailsMeta ),
-            formValue   : I.Map( formValue ),
-            formErrors  : I.Map(),
-            isVisible   : false,
-            lastChanged : null
+            formMeta   : I.Map( DetailsMeta ),
+            formValue  : I.Map( formValue ),
+            formErrors : I.Map(),
+            isVisible  : false
         }); 
         
 
@@ -51,20 +53,6 @@ module.exports = Marty.createStore({
             this.state = this.state.set( 'isVisible', false );
             dfd.resolve( formValue );
         }
-        
-        function validateForm ( __, path ) {
-            log.debug( '-------------- ', arguments );
-            var fieldName   = path.split( SEP )[0];
-            var formValue   = this.state.get( 'formValue' );
-            var formErrors  = this.state.get( 'formErrors' );
-            var lastChanged = this.state.get( 'lastChanged' );
-            
-            log.debug( 'DataFormStore.validateForm :: fieldName ::',
-                       fieldName );
-            log.debug( 'DataFormStore.validateForm :: lastChanged ::',
-                       lastChanged );
-        }
-
     },
 
 
@@ -80,11 +68,11 @@ module.exports = Marty.createStore({
     },
 
     
-    updateForm: function ( newFormValue, path ) {
-        log.debug( 'DetailsFormStore.updateForm :: ', path );
-        var st = this.state;
-        this.state = st.set( 'formValue', I.Map( newFormValue ) )
-                       .set( 'lastChanged', path );
+    updateForm: function ( newFormValue, errs ) {
+        log.debug( 'DetailsFormStore.updateForm :: ', errs );
+        var s  = this.state.set( 'formValue', I.Map( newFormValue ) );
+        var er = s.get( 'formErrors' ).merge( errs );
+        this.state = s.set( 'formErrors', er );
         this.hasChanged();
     },
 
@@ -95,12 +83,6 @@ module.exports = Marty.createStore({
         this.hasChanged();
     }
     
-
-    /* ====================================================== */
-    /* ====================== GETTERS ======================= */
-    /* ====================================================== */
-
-
 
     /* ====================================================== */
     /* ====================== HELPERS ======================= */
