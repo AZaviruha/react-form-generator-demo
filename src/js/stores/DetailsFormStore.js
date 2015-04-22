@@ -57,20 +57,15 @@ module.exports = Marty.createStore({
             var s          = this.state;
 
             if ( isFormValid( formErrors ) ) {
+                log.debug( 'DataFormStore.saveForm :: isValid' );
                 this.state = s.set( 'isVisible', false );
-                dfd.resolve( formValue );
+                dfd.resolve( this.state.get( 'formValue' ) );
             }
             else {
+                log.debug( 'DataFormStore.saveForm :: !isValid' );
                 this.state = s.set( 'formErrors', I.Map( formErrors ) );
                 dfd.reject( formErrors );
             }
-            
-            function isFormValid ( formErrors ) {
-                return t.reduce(function ( acc, val, key ) {
-                    return acc && !(val && val.length);
-                }, true, formErrors );
-            }
-
         }
     },
 
