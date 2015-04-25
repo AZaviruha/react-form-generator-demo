@@ -1,6 +1,7 @@
 /* LABELS */
 label {
     color: #555;
+    padding-left: 0 !important;
 }
 
 /* HEADERS */
