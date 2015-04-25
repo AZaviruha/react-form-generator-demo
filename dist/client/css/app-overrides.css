@@ -201,7 +201,7 @@ input, textarea {
 .pagination > .disabled > a,
 .pagination > .disabled > a:hover,
 .pagination > .disabled > a:focus {
-    color: #ddd;
+    color: #999;
 }
 .pagination > li,
 .pagination > .active > a,
