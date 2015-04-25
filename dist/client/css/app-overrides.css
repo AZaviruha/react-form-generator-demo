@@ -77,91 +77,91 @@ input, textarea {
     outline: 0 none;
 }
 
-/* Default: dark grey */
-.btn-default,
-.btn-default:focus {
+/* Dark grey button */
+.btn-grey,
+.btn-grey:focus {
     color: #ffffff;
     background-color: #4a4d50;
     border-color: #4a4d50;
 }
-.btn-default:hover {
+.btn-grey:hover {
     color: #ffffff;
     background-color: #63676a;
     border-color: #4a4d50;
 }
-.btn-default:active {
+.btn-grey:active {
     color: #ffffff;
     background-color: #313436;
     border-color: #4a4d50;
 }
 
-/* Primary: blue */
-.btn-primary,
-.btn-primary:focus {
+/* Blue button */
+.btn-blue,
+.btn-blue:focus {
     color: #ffffff;
     background-color: #3085d6;
     border-color: #3085d6;
 }
-.btn-primary:hover {
+.btn-blue:hover {
     color: #ffffff;
     background-color: #5b9ede;
     border-color: #3085d6;
 }
-.btn-primary:active {
+.btn-blue:active {
     color: #ffffff;
     background-color: #236bb0;
     border-color: #3085d6;
 }
 
-/* Secondary: green */
-.btn-secondary,
-.btn-secondary:focus {
+/* Green button */
+.btn-green,
+.btn-green:focus {
     color: #ffffff;
     background-color: #42a35a;
     border-color: #42a35a;
 }
-.btn-secondary:hover {
+.btn-green:hover {
     color: #ffffff;
     background-color: #5bbd73;
     border-color: #42a35a;
 }
-.btn-secondary:active {
+.btn-green:active {
     color: #ffffff;
     background-color: #337f46;
     border-color: #42a35a;
 }
 
-/* Warning: yellow; */
-.btn-warning,
-.btn-warning:focus {
+/* Yellow button */
+.btn-yellow,
+.btn-yellow:focus {
     color: #ffffff;
     background-color: #f6b83f;
     border-color: #f6b83f;
 }
-.btn-warning:hover {
+.btn-yellow:hover {
     color: #ffffff;
     background-color: #f8ca70;
     border-color: #f6b83f;
 }
-.btn-warning:active {
+.btn-yellow:active {
     color: #ffffff;
     background-color: #f4a60e;
     border-color: #f6b83f;
 }
 
-/* Danger: red */
-.btn-danger,
-.btn-danger:focus {
+/* Red button */
+.btn-red,
+.btn-red:focus {
     color: #ffffff;
     background-color: #ca3838;
     border-color: #ca3838;
 }
-.btn-danger:hover {
+.btn-red:hover {
     color: #ffffff;
     background-color: #d56060;
     border-color: #ca3838;
 }
-.btn-danger:active {
+.btn-red:active {
     color: #ffffff;
     background-color: #a32c2c;
     border-color: #ca3838;
