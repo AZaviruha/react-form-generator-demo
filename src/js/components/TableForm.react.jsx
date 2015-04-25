@@ -22,10 +22,35 @@ var Actions        = require( '../../actions/TableFormActions' );
 
 var TableForm = React.createClass({
     displayName: 'TableForm',
+
+    /* ====================================================== */
+    /* ====================== LIFE CYCLE =================== */
+    /* ====================================================== */
+    
+    getInitialState: function () {
+        return {
+            width: 600
+        };
+    },
+    
+
+    componentDidMount: function () {
+        var self = this;
+        var node = React.findDOMNode( self.refs.container );
+        handler();
+
+        addEventListener( window, 'resize', handler );
+        
+        function handler () {
+            self.setState({ width: node.offsetWidth });
+        }
+    },
+    
     
     /* ====================================================== */
     /* ====================== ACTIONS ====================== */
     /* ====================================================== */
+
     addNewRequest: function () {
         log.debug( 'TableForm.addNewRequest' );
     },
@@ -46,6 +71,7 @@ var TableForm = React.createClass({
     /* ====================================================== */
     /* ====================== HELPERS ======================= */
     /* ====================================================== */
+
     getRow: function ( idx ) {
         return this.props.rows[ idx ];
     },
@@ -70,7 +96,6 @@ var TableForm = React.createClass({
     },
 
     
-
     render: function () {
         // log.debug( 'TableForm.render :: ', this.props );
         var props  = this.props;
@@ -79,7 +104,7 @@ var TableForm = React.createClass({
         if ( !props.isVisible ) return null;
 
         return (
-            <Row>
+            <Row ref="container">
                 <Col sm={12} xs={12} md={12}>
                     <Button 
                         sm={12} xs={4} md={2}
@@ -93,7 +118,7 @@ var TableForm = React.createClass({
                         rowHeight={50} 
                         rowGetter={this.getRow} 
                         rowsCount={this.props.rows.length} 
-                        width={600} 
+                        width={this.state.width} 
                         height={400} 
                         headerHeight={50}>
 
@@ -151,3 +176,17 @@ module.exports = Marty.createContainer( TableForm, {
         }
     }
 });
+
+
+function addEventListener ( el, eventName, handler ) {
+    if ( el.addEventListener ) {
+        el.addEventListener( eventName, handler );
+    } else {
+        el.attachEvent( 'on' + eventName, function () {
+            handler.call( el );
+        });
+    }
+}
+
+
+
