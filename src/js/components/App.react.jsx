@@ -19,7 +19,8 @@ module.exports = React.createClass({
         return (
             <Grid>
                 <Row>
-                    <Col sm={12} xs={12} md={12}>
+                    <Col sm={12} xs={12} md={12}
+                         className="demo-header">
                         <h3>react-form-generator demo</h3>
                     </Col>
                 </Row>
