@@ -36,10 +36,10 @@ module.exports = Marty.createStore({
         
         var formValue = t.evalDefaults( DetailsMeta );
 
-        return I.Map({
-            formMeta   : I.Map( DetailsMeta ),
-            formValue  : I.Map( formValue ),
-            formErrors : I.Map(),
+        return I.fromJS({
+            formMeta   : DetailsMeta,
+            formValue  : formValue,
+            formErrors : {},
             isVisible  : false
         }); 
         
@@ -50,11 +50,12 @@ module.exports = Marty.createStore({
             dfd.resolve( null );
         }
 
+
         function saveForm ( dfd ) {
-            var formValue  = this.state.get( 'formValue' ).toObject();
-            var formMeta   = this.state.get( 'formMeta' ).toObject();
-            var formErrors = validateForm( formMeta, formValue );
             var s          = this.state;
+            var formValue  = s.get( 'formValue' ).toJS();
+            var formMeta   = s.get( 'formMeta' ).toJS();
+            var formErrors = validateForm( formMeta, formValue );
 
             if ( isFormValid( formErrors ) ) {
                 log.debug( 'DataFormStore.saveForm :: isValid' );
@@ -76,17 +77,19 @@ module.exports = Marty.createStore({
 
     openForm: function ( request ) {
         log.debug( 'DetailsFormStore.openForm :: ', request );
-        this.state = this.state.set( 'isVisible', true );
-        this.state = this.state.set( 'formValue', request );
+
+        this.state = this.state.set( 'isVisible', true ) 
+                               .set( 'formValue', request );
         this.hasChanged();
     },
 
     
     updateForm: function ( newFormValue, errs ) {
         log.debug( 'DetailsFormStore.updateForm :: ', errs );
-        var s  = this.state.set( 'formValue', I.Map( newFormValue ) );
-        var er = s.get( 'formErrors' ).merge( errs );
-        this.state = s.set( 'formErrors', er );
+
+        var s = this.state;
+        this.state = s.set( 'formValue' , I.fromJS( newFormValue ) ) 
+                      .set( 'formErrors', I.fromJS( errs ) );
         this.hasChanged();
     },
 

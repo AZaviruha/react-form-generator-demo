@@ -31,6 +31,16 @@ var DetailsForm = React.createClass({
         Actions.handleFormEvent( fldName + ':' + eName, eVal );
     },
     
+
+    /* ====================================================== */
+    /* ====================== HELPERS ======================= */
+    /* ====================================================== */
+
+    shouldComponentUpdate: function ( nextProps, nextState ) {
+        return this.props.compState != nextProps.compState;
+    },
+    
+
     /* ====================================================== */
     /* ====================== HELPERS ======================= */
     /* ====================================================== */
@@ -66,9 +76,13 @@ module.exports = Marty.createContainer( DetailsForm, {
     listenTo: DetailsFormStore,
 
     fetch: {
+        compState: function () {
+            return DetailsFormStore.for( this ).getState();
+        },
+
         formMeta: function () {
             var state = DetailsFormStore.for( this ).getState();
-            return state.get( 'formMeta' ).toObject();
+            return state.get( 'formMeta' ).toJS();
         },
         
         formValue: function () {
