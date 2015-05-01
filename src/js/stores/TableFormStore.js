@@ -45,14 +45,33 @@ module.exports = Marty.createStore({
             var self = this;
 
             prom.then(function ( val ) {
+                var recordID, rowsNum, newVal, rows, editedIdx;
+
                 if ( val ) {
-                    var idx = self.__rows.findIndex(function ( el ) {
-                        return el.get( 'id' ) === val.get( 'id' );
-                    });
-                    self.__rows = self.__rows.splice( idx, 1, val );
+                    recordID = val.get( 'id' );
+                    rows     = self.__rows;
+                    rowsNum  = rows.count();
+
+                    if ( recordID ) {
+                        editedIdx = rows.findIndex(function ( el ) {
+                            return el.get( 'id' ) === recordID;
+                        });
+                        rows = rows.splice( editedIdx, 1, val );
+                    }
+                    else {
+                        newVal = val.set( 'id', 'record_' + rowsNum );
+                        rows   = rows.push( newVal );
+                    }
                 }
                 
-                self.state = self.state.set( 'isVisible', true );
+                self.__rows = rows;
+                self.state  = self.state
+                    .set( 'isVisible', true )
+                    .mergeIn([ 'paging' ], {
+                        total   : Math.ceil( rowsNum / PAGE_SIZE ),
+                        current : 0,
+                        size    : PAGE_SIZE
+                    });
 
                 /* Well, it's a kind of workaround
                    I'm working on this */
@@ -120,7 +139,7 @@ module.exports = Marty.createStore({
 function createRows ( size ) {
     return I.Range( 0, size ).map(function ( idx ) { 
         return I.Map({
-            id     : 'request_' + idx,
+            id     : 'record_' + idx,
             author : faker.name.findName(),
             title  : faker.lorem.sentence()
         });
