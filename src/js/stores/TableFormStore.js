@@ -16,6 +16,7 @@ module.exports = Marty.createStore({
     
     handlers: {
         changePage      : TableConstants.CHANGE_TABLE_PAGE,
+        addRow          : TableConstants.ADD_TABLE_ROW,
         editRow         : TableConstants.EDIT_TABLE_ROW,
         handleFormEvent : DetailsConstants.HANDLE_FORM_EVENT
     },
@@ -74,6 +75,11 @@ module.exports = Marty.createStore({
         this.hasChanged();
     },
     
+
+    addRow: function ( row ) {
+        this.state = this.state.set( 'isVisible', false );
+        this.hasChanged();
+    },
 
     editRow: function ( row ) {
         this.state = this.state.set( 'isVisible', false );

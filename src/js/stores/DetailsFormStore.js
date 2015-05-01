@@ -18,7 +18,8 @@ module.exports = Marty.createStore({
     id: 'DetailsFormStore',
     
     handlers: {
-        openForm        : TableConstants.EDIT_TABLE_ROW,
+        addRow          : TableConstants.ADD_TABLE_ROW,
+        editRow         : TableConstants.EDIT_TABLE_ROW,
         updateForm      : DetailsConstants.UPDATE_DETAILS,
         handleFormEvent : DetailsConstants.HANDLE_FORM_EVENT
     },
@@ -75,11 +76,27 @@ module.exports = Marty.createStore({
     /* ====================== ACTIONS ====================== */
     /* ====================================================== */
 
-    openForm: function ( request ) {
-        log.debug( 'DetailsFormStore.openForm :: ', request );
+    addRow: function () {
+        this.state = this.state
+            .set( 'isVisible', true ) 
+            .set( 'formValue', I.Map({}) ) 
+            .mergeIn([ 'formMeta', 'fields', 'id' ], 
+                     { isHidden: true });
 
-        this.state = this.state.set( 'isVisible', true ) 
-                               .set( 'formValue', request );
+        log.debug( 'DetailsFormStore.addRow :: ', 
+                   this.state.toJS() );
+        this.hasChanged();
+    },
+
+
+    editRow: function ( request ) {
+        log.debug( 'DetailsFormStore.editRow :: ', request );
+
+        this.state = this.state
+            .set( 'isVisible', true ) 
+            .set( 'formValue', request )
+            .mergeIn([ 'formMeta', 'fields', 'id' ], 
+                     { isHidden: false });
         this.hasChanged();
     },
 

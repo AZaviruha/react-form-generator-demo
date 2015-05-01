@@ -53,6 +53,7 @@ var TableForm = React.createClass({
 
     addNewRequest: function () {
         log.debug( 'TableForm.addNewRequest' );
+        Actions.addTableRow();
     },
     
 
@@ -105,6 +106,11 @@ var TableForm = React.createClass({
 
         return (
             React.createElement(Row, {ref: "container"}, 
+                React.createElement(Col, {sm: 12, xs: 12, md: 12}, 
+                    React.createElement("p", null, "To see generated form, click on the row's ID" + ' ' + 
+                       "or on the \"New\" button.")
+                ), 
+
                 React.createElement(Col, {sm: 12, xs: 12, md: 12}, 
                     React.createElement(Button, {
                         sm: 12, xs: 4, md: 2, 
