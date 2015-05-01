@@ -35,19 +35,22 @@
     "object-assign": "^2.0.0",
     "react": "^0.13.0",
     "react-bootstrap": "^0.20.3",
-    "react-form-generator": "^0.2.0",
+    "react-form-generator": "0.3.0",
     "react-pager": "^1.1.1",
     "vow": "^0.4.9"
   },
   "devDependencies": {
+    "envify": "^3.4.0",
     "express": "^4.12.3",
     "front-log": "0.0.5",
     "gulp": "^3.8.10",
     "gulp-babel": "^5.1.0",
     "gulp-browserify": "^0.5.0",
     "gulp-concat": "^2.4.1",
+    "gulp-if": "^1.2.5",
     "gulp-react": "^2.0.0",
     "gulp-shell": "^0.4.0",
+    "gulp-uglify": "^1.2.0",
     "yargs": "^3.4.5"
   }
 }
