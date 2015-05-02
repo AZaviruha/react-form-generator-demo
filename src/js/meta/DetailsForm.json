@@ -12,7 +12,7 @@
                 "message": "Field is required"
             }]
         },
-        "title": {
+        "notes": {
             "renderer": "textarea",
             "validators": [{
                 "rule": "required",
@@ -22,6 +22,17 @@
                 "value": 200,
                 "message": "Maximum length of field is 200 characters"
             }]
+        }, 
+        "profession": {
+            "renderer": "select",
+            "rendererSpecific": {
+                "possibleValues": [
+                    { "id": "dev", "text": "Developer" },
+                    { "id": "qa",  "text": "Quality Assurance" },
+                    { "id": "ban", "text": "Business Analytic" },
+                    { "id": "san", "text": "System Analytic" }
+                ]
+            }
         }, 
         "btnSave": {
             "renderer": "button",
@@ -81,8 +92,26 @@
                     "content": [{
                         "renderer": "default",
                         "rendererSpecific": {
-                            "fieldID": "title",
-                            "label": "Title:",
+                            "fieldID": "notes",
+                            "label": "Notes:",
+                            "css": {
+                                "wrapper": "row",
+                                "label": "col-xs-12 col-sm-2 col-md-2",
+                                "field": "col-xs-12 col-sm-9 col-md-9",
+                                "errors": "col-xs-12 col-sm-9 col-sm-offset-2 col-md-9 col-md-offset-2"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-12",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "profession",
+                            "label": "Profession:",
                             "css": {
                                 "wrapper": "row",
                                 "label": "col-xs-12 col-sm-2 col-md-2",

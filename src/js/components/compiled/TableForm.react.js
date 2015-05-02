@@ -142,10 +142,10 @@ var TableForm = React.createClass({
                             dataKey: "author"}), 
 
                         React.createElement(Column, {
-                            label: "Title", 
+                            label: "Notes", 
                             width: 300, 
                             cellDataGetter: this.getCell, 
-                            dataKey: "title"})
+                            dataKey: "notes"})
 
                     )
                 ), 

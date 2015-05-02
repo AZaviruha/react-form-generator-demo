@@ -138,12 +138,15 @@ module.exports = Marty.createStore({
 });
 
 
+
 function createRows ( size ) {
     return I.Range( 0, size ).map(function ( idx ) { 
         return I.Map({
-            id     : 'record_' + idx,
-            author : faker.name.findName(),
-            title  : faker.lorem.sentence()
+            id         : 'record_' + idx,
+            author     : faker.name.findName(),
+            notes      : faker.lorem.sentence(),
+            profession : faker.random.array_element([ 
+                'dev', 'qa', 'ban', 'san' ])
         });
     }).toList();
 }
